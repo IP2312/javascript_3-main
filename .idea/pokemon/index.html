@@ -6,9 +6,29 @@
     <script src="./pokemonApi.js" defer></script>
 </head>
 <body>
-<h1>Name</h1>
-<div id="pokemonStats">
-    <h2>Weight</h2>
+<label for="choice">Choose a Pokemon:</label>
+<select id="choice" name="choice">
+    <option value="none" selected disabled hidden>Select Pokemon</option>
+    <option value="pikachu">Pikachu</option>
+    <option value="bulbasaur">Bulbasaur</option>
+    <option value="charmander">Charmander</option>
+    <option value="squirtle">Squirtle</option>
+    <option value="eevee">Eevee</option>
+</select>
+
+<div id="container">
+    <h1>Name</h1>
+    <div id="pokemonStats">
+        <p id = "weight">Weight</p>
+        <p id = "exp">base Exp</p>
+        <img id="image1" src="" alt="pokemon Image1">
+        <img id ="image2" src="" alt="pokemon Image2">
+        <ul>
+
+        </ul>
+    </div>
 </div>
+
+
 </body>
 </html>
