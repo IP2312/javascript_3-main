@@ -4,7 +4,7 @@ const weight = document.getElementById('weight');
 const exp = document.getElementById('exp');
 const image1 = document.getElementById('image1');
 const image2 = document.getElementById('image2');
-const listAbilities = document.querySelector('ul');
+const listAbilities = document.getElementById('listAbilities');
 
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -35,10 +35,20 @@ function displayPokemon(pokemon) {
     exp.innerHTML = pokemon.base_experience
     image1.src = pokemon.sprites.front_default
     image2.src = pokemon.sprites.back_default
-    console.log(pokemon.abilies[0].name)
+    console.log("abilities:")
+    displayAbilities(pokemon);
     
 }
 
-function displayAbilities(){
-    let newAbility = document.createElement('li');
+function displayAbilities(pokemon){
+    listAbilities.innerHTML = '';
+    console.log(pokemon.abilities.length)
+    for (let i = 0; i < pokemon.abilities.length; i++) {
+        let newAbility = document.createElement('li');
+        console.log(pokemon.abilities[i].ability.name);
+        newAbility.innerHTML=pokemon.abilities[i].ability.name;
+        listAbilities.appendChild(newAbility);
+    }
+
+
 }
