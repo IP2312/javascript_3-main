@@ -10,7 +10,6 @@ const listAbilities = document.getElementById('listAbilities');
 document.addEventListener('DOMContentLoaded', function(){
     console.log('DOMContentLoaded');
     selection.selectedIndex = 0;
-
 });
 
 selection.addEventListener('change', function(){
@@ -32,12 +31,11 @@ function displayPokemon(pokemon) {
     console.log(pokemon);
     heading.innerHTML = pokemon.name;
     weight.innerHTML = pokemon.weight;
-    exp.innerHTML = pokemon.base_experience
-    image1.src = pokemon.sprites.front_default
-    image2.src = pokemon.sprites.back_default
-    console.log("abilities:")
+    exp.innerHTML = pokemon.base_experience;
+    image1.src = pokemon.sprites.front_default;
+    image2.src = pokemon.sprites.back_default;
+    console.log("abilities:");
     displayAbilities(pokemon);
-    
 }
 
 function displayAbilities(pokemon){
@@ -49,6 +47,4 @@ function displayAbilities(pokemon){
         newAbility.innerHTML=pokemon.abilities[i].ability.name;
         listAbilities.appendChild(newAbility);
     }
-
-
 }

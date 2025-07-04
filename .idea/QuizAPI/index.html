@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+<h1>Trivia </h1>
+<div class="game-board" id="game-board">
+    <button id='btn-start'>Start Game</button>
+    <div id="popup-setup">
+        <h2>Setup Quiz</h2>
+        <form id="qiuzForm">
+        <label>
+            Number of Questions:
+            <input type="number" min="1">
+        </label>
+        <label>
+            Difficulty:
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </label>
+            <input id="submit" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="question">Question</div>
+    <div id="levels"></div>
+    <div id="popup-aswers">
+        <button id="popup-button1">1</button>
+        <button id="popup-button2">2</button>
+        <button id="popup-button3">3</button>
+        <button id="popup-button4">4</button>
+    </div>
+</div>
+
+</body>
+</html>
