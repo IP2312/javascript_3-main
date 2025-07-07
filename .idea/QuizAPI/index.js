@@ -89,13 +89,8 @@ function displayAnswer(question) {
         btn.innerHTML = answers[shuffledArry[i]].answer;
         btn.dataset.correct = answers[shuffledArry[i]].correct;
         btn.addEventListener('click', function (){
-            if (btn.dataset.correct === 'true') {
-                console.log('correct');
-                btn.style.backgroundColor = 'green';
-            }else {
-                console.log('wrong');
-                btn.style.backgroundColor = 'red';
-            }
+            btn.style.backgroundColor = btn.dataset.correct === 'true' ? 'green' : 'red';
+            btnAnswers.forEach(btn => btn.disabled = true);
         })
 
     });
