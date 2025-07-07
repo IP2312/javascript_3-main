@@ -13,10 +13,9 @@
     <button id='btn-start'>Start Game</button>
     <div id="popup-setup">
         <h2>Setup Quiz</h2>
-        <form id="qiuzForm">
         <label>
             Number of Questions:
-            <input type="number" min="1">
+            <input id="nr-questions" type="number" min="1">
         </label>
         <label>
             Difficulty:
@@ -27,16 +26,15 @@
             </select>
         </label>
             <input id="submit" type="submit" value="Submit">
-        </form>
     </div>
 
     <div id="question">Question</div>
     <div id="levels"></div>
     <div id="popup-aswers">
-        <button id="popup-button1">1</button>
-        <button id="popup-button2">2</button>
-        <button id="popup-button3">3</button>
-        <button id="popup-button4">4</button>
+        <button id="popup-button1" class="popup-button" data-correct="false">1</button>
+        <button id="popup-button2" class="popup-button" data-correct="false">2</button>
+        <button id="popup-button3" class="popup-button" data-correct="false">3</button>
+        <button id="popup-button4" class="popup-button" data-correct="false">4</button>
     </div>
 </div>
 
