@@ -58,7 +58,7 @@ function createLevels(nrLevels, questions) {
         newLevel.classList.add('level');
         newLevel.id = 'level ' + (i + 1);
         newLevel.innerHTML = i + 1;
-        newLevel.addEventListener('click', async function levelClick () {
+        newLevel.addEventListener('click', async function levelClick() {
             newLevel.innerHTML = 'clicked';
             askQuestion(questions[i]);
             let correctAnswert = await displayAnswer(questions[i]);
@@ -76,10 +76,7 @@ function askQuestion(question) {
     console.log('ask question');
     console.log(question.question);
     questionField.innerHTML = question.question
-
-
 }
-
 
 async function displayAnswer(question) {
     console.log('display answers');
