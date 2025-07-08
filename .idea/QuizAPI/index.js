@@ -7,7 +7,9 @@ const nrQuestions = document.getElementById('nr-questions');
 const difficultly = document.getElementById('difficulty');
 
 const questionField = document.getElementById('question');
+const levels = document.getElementById('levels')
 
+const popupAnswers = document.getElementById('popup-aswers')
 const btnAnswers = document.querySelectorAll('.popup-button');
 const btnAnswer1 = document.getElementById('popup-button1');
 const btnAnswer2 = document.getElementById('popup-button2');
@@ -50,17 +52,23 @@ async function getQuestions(nrLevels, difficultly) {
 
 
 function createLevels(nrLevels, questions) {
+    levels.innerHTML = '';
     for (let i = 0; i < nrLevels; i++) {
         let newLevel = document.createElement('div');
         newLevel.classList.add('level');
         newLevel.id = 'level ' + (i + 1);
         newLevel.innerHTML = i + 1;
-        newLevel.addEventListener('click', function () {
+        newLevel.addEventListener('click', async function levelClick () {
             newLevel.innerHTML = 'clicked';
             askQuestion(questions[i]);
-            displayAnswer(questions[i]);
+            let correctAnswert = await displayAnswer(questions[i]);
+            newLevel.removeEventListener('click', levelClick);
+            console.log("after wait: ")
+            console.log(correctAnswert);
+            newLevel.style.backgroundColor = correctAnswert ? 'green' : 'red';
+
         })
-        document.getElementById('levels').appendChild(newLevel);
+        levels.appendChild(newLevel);
     }
 }
 
@@ -73,7 +81,7 @@ function askQuestion(question) {
 }
 
 
-function displayAnswer(question) {
+async function displayAnswer(question) {
     console.log('display answers');
     const answers = [
         {answer: question.correct_answer, correct: true},
@@ -84,24 +92,38 @@ function displayAnswer(question) {
     console.log(answers);
     let shuffledArry = shuffle();
     console.log(shuffledArry);
+    popupAnswers.style.display = 'block';
 
-    btnAnswers.forEach((btn, i) => {
-        btn.innerHTML = answers[shuffledArry[i]].answer;
-        btn.dataset.correct = answers[shuffledArry[i]].correct;
-        btn.addEventListener('click', function (){
-            btn.style.backgroundColor = btn.dataset.correct === 'true' ? 'green' : 'red';
-            btnAnswers.forEach(btn => btn.disabled = true);
-        })
+    return new Promise(resolve => {
+        btnAnswers.forEach((btn, i) => {
+            btn.innerHTML = answers[shuffledArry[i]].answer;
+            btn.dataset.correct = answers[shuffledArry[i]].correct;
+            btn.disabled = false;
+            btn.style.backgroundColor = '';
+            btn.addEventListener('click', function handler() {
+                let answerCorrect = false;
+                if (btn.dataset.correct === 'true') {
+                    btn.style.backgroundColor = 'green';
+                    answerCorrect = true;
+                    console.log('Answer correct');
 
-    });
+                } else {
+                    btn.style.backgroundColor = 'red';
+                    answerCorrect = false;
+                    console.log('Answer incorrect');
+                }
+                btnAnswers.forEach(btn => btn.disabled = true);
+                resolve(answerCorrect);
+            })
+
+        });
+    })
 
 
-    document.getElementById('popup-aswers').style.display = 'block';
 }
 
 //Fisher_Yates_Shuffle
 function shuffle() {
-    debugger;
     array = Array.from({length: 4}, (_, i) => i);
     for (let i = array.length - 1; i > 0; i--) {
         let randomIndex = Math.floor(Math.random() * (i + 1));
